@@ -1,0 +1,27 @@
+bulkKmeansUnsup = function (fileLocation, centers, iterations, start){
+  require(raster)
+  require(cluster)
+  filesToAnalyze = list.files(fileLocation)
+  numberOfFiles = length(filesToAnalyze)
+  
+  for (k in 1:numberOfFiles) {
+    ext = substr(filesToAnalyze[k], nchar(filesToAnalyze[k])-2, nchar(filesToAnalyze[k]))
+    if (ext == "tif" ||ext == "TIF") {
+      fullFileName = paste(fileLocation, filesToAnalyze[k], sep = "/", collapse = "")
+      noExt = strtrim(fullFileName, nchar(fullFileName)-4)
+      newFileName = paste(noExt, "_kMeans", sep = "", collapse = "")
+      print(newFileName)
+      img = stack(fullFileName)
+      v = getValues(img)
+      l = which(!is.na(v))
+      v = na.omit(v)
+      E = kmeans(v, centers, iter.max = iterations, nstart = start)
+      UnsupKmeans = raster(img)
+      UnsupKmeans[i] = E$cluster
+      writeRaster(UnsupKmeans, filename = newFileName, format = 'GTiff', overwrite = TRUE)
+    } else {
+      print ("It wasn't my type")
+    }
+  }  
+  return("did the thing")  
+}
