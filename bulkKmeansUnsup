@@ -22,7 +22,7 @@ bulkKmeansUnsup = function (fileLocation, centers, iterations, start){
       v = na.omit(v)
       E = kmeans(v, centers, iter.max = iterations, nstart = start)
       UnsupKmeans = raster(img)
-      UnsupKmeans[i] = E$cluster
+      UnsupKmeans[l] = E$cluster
       writeRaster(UnsupKmeans, filename = newFileName, format = 'GTiff', overwrite = TRUE)
     } else {
       print ("It wasn't my type")
