@@ -11,6 +11,9 @@ bulkKmeansUnsup = function (fileLocation, centers, iterations, start){
       noExt = strtrim(fullFileName, nchar(fullFileName)-4)
       newFileName = paste(noExt, "_kMeans", sep = "", collapse = "")
       print(newFileName)
+      
+      #Kmeans analysis for unsuperivsed remote sensing analysis
+      #was adapted from http://remote-sensing.eu/unsupervised-classification-with-r/
       img = stack(fullFileName)
       v = getValues(img)
       l = which(!is.na(v))
