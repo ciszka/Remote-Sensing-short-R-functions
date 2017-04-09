@@ -15,6 +15,8 @@ bulkKmeansUnsup = function (fileLocation, centers, iterations, start){
       #Kmeans analysis for unsuperivsed remote sensing analysis
       #was adapted from http://remote-sensing.eu/unsupervised-classification-with-r/
       img = stack(fullFileName)
+      
+      #turns raster values into a matrix that the kmeans function can read
       v = getValues(img)
       l = which(!is.na(v))
       v = na.omit(v)
