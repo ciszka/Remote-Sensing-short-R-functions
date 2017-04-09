@@ -5,10 +5,14 @@ recVegOnce = function(scene, j, k){
   categories = matrix(matrixValues, nrow = 3, ncol=3) #turns that list into a matrix
   colnames(categories) <- c('from', 'to', 'becomes') #it names the  matrix from, to, and becomes for the reclassificaiton step
   img = brick(scene) #creates a raster brick set of the file
+ 
+  #Sets up naming conventions
   noExt = strtrim(scene, nchar(scene)-4) #this removes the extension for later use
   print(noExt) #prints the name to make sure you're not failing
   newFileName = paste(noExt, "_NDVI", sep = "", collapse = "") #uses that just name to create a new file name for the NDVI file
   print(newFileName) #prints the new name to make sure you're not failing
+ 
+  
   bj = img[[j]] #Sets the Red band to this parameter
   bk = img[[k]] #Sets the NIR band to this parameter
   NDVI = (bk-bj)/(bk+bj) #Executes and NDVI of these two parameters
