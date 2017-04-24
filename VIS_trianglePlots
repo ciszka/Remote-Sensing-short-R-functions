@@ -1,0 +1,8 @@
+triPlotsForProject = function(info, ){
+  require(ade4)
+  colnames(info) <- c("Vegetation", "Impervious", "Soil")
+  #need to have some sort of label thing
+  lab = c(1:nrow(info))
+  triangle.plot(info, show.position = FALSE, draw.line = FALSE, label = lab,
+                + clab = 1 )
+  }
